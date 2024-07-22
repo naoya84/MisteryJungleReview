@@ -1,0 +1,12 @@
+name: minspo
+services:
+  db:
+    image: postgres
+    container_name: minspo-postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: minspo-todo
+    command: postgres -c log_destination=stderr -c log_statement=all -c log_connections=on -c log_disconnections=on

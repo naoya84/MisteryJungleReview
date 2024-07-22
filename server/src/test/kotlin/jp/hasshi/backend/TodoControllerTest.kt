@@ -31,8 +31,8 @@ class TodoControllerTest {
         fun `getTodosの戻り値を返す`(){
             val stubTodoService = StubTodoService()
             stubTodoService.getTodos_returnValue = listOf(
-                Todo(todo = "カレーを食べる"),
-                Todo(todo = "お皿を片付ける")
+                TodoRecord(todo = "カレーを食べる"),
+                TodoRecord(todo = "お皿を片付ける")
             )
 
             val todoController = TodoController(stubTodoService)
