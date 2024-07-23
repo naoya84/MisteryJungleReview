@@ -7,6 +7,13 @@ class SpyTodoService: TodoService {
         getTodos_wasCalled = true
         return emptyList()
     }
+
+    var postTodo_argument_todo: String? = null
+
+    override fun postTodo(todo: String): List<TodoRecord> {
+        postTodo_argument_todo = todo
+        return emptyList()
+    }
 }
 
 class StubTodoService: TodoService {
@@ -14,5 +21,10 @@ class StubTodoService: TodoService {
 
     override fun getTodos(): List<TodoRecord> {
         return getTodos_returnValue
+    }
+
+    var postTodo_returnValue: List<TodoRecord> = emptyList()
+    override fun postTodo(todo: String): List<TodoRecord> {
+        return postTodo_returnValue
     }
 }

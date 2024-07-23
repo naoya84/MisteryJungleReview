@@ -1,5 +1,6 @@
 export interface Http {
     get<T>(url: string): Promise<T>
+    post<T>(url: string, body: string): Promise<T>
 }
 
 export class NetworkHttp implements Http {
@@ -8,4 +9,11 @@ export class NetworkHttp implements Http {
         return await response.json() as Promise<T>
     }
 
+    async post<T>(url: string, body: string): Promise<T> {
+        const headers = {"Content-Type": "application/json"}
+        const method = "POST"
+
+        const response = await fetch(url, {method, headers, body})
+        return await response.json() as Promise<T>
+    }
 }

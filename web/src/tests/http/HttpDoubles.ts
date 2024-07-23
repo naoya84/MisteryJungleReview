@@ -3,9 +3,17 @@ import {TodoResponse} from "../../model/TodoResponse.ts";
 
 export class SpyHttp implements Http {
     get_argument_url?: string = undefined
-
     get<T>(url: string): Promise<T> {
         this.get_argument_url = url
+        return Promise.resolve([]) as Promise<T>
+    }
+
+    post_argument_url?: string = undefined
+    post_argument_body?: string = undefined
+
+    post<T>(url: string, body: string): Promise<T> {
+        this.post_argument_url = url
+        this.post_argument_body = body
         return Promise.resolve([]) as Promise<T>
     }
 
@@ -18,4 +26,8 @@ export class StubHttp implements Http {
         return this.get_returnValue as Promise<T>
     }
 
+    post_returnValue: Promise<TodoResponse[]> = Promise.resolve([])
+    post<T>(url: string, body: string): Promise<T> {
+        return this.post_returnValue as Promise<T>
+    }
 }
