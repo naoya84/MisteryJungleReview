@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 
 plugins {
     id("org.springframework.boot") version "3.3.1"
@@ -6,6 +7,8 @@ plugins {
     kotlin("plugin.jpa") version "1.9.24"
     kotlin("jvm") version "1.9.24"
     kotlin("plugin.spring") version "1.9.24"
+    id("org.springdoc.openapi-gradle-plugin") version "1.8.0"
+    id("org.openapi.generator") version "7.4.0"
 }
 
 group = "jp.hasshi"
@@ -28,6 +31,7 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -45,4 +49,13 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.register<GenerateTask>("openApiGenerateForTypeScript") {
+    generatorName = "typescript-fetch"
+    inputSpec = project.layout.buildDirectory.dir("openapi.json").get().asFile.path
+    outputDir = project.layout.buildDirectory.dir("openapi/typescript").get().asFile.path
+    globalProperties.apply {
+        put("models", "")
+    }
 }
