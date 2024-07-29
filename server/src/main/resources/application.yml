@@ -1,6 +1,6 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/minspo-todo
+    url: jdbc:postgresql://localhost:5432/minspo-todos
     username: username
     password: password
