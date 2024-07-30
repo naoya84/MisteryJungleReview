@@ -4,7 +4,7 @@ services:
     image: postgres:15
     container_name: minspo-todo-postgres
     ports:
-      - 5432:5432
+      - 5431:5432
     environment:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
