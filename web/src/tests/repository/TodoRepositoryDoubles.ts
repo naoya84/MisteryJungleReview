@@ -15,7 +15,7 @@ export class SpyTodoRepository implements TodoRepository {
     getTodos_wasCalled: boolean = false
     getTodos(): Promise<TodoResponse[]> {
         this.getTodos_wasCalled = true
-        return Promise.resolve([{todo: "spy-todo"}])
+        return Promise.resolve([])
     }
 
     postTodo_argument_todo?: string = undefined
